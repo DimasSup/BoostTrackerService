@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), tdv.dg.boostertrackerservice.BoosterLi
 
     override fun onPause() {
         super.onPause()
-        unbindService(connection)
+        disconnectService()
     }
 
     override fun onDestroy() {
@@ -127,6 +127,11 @@ class MainActivity : AppCompatActivity(), tdv.dg.boostertrackerservice.BoosterLi
     fun connectToService() {
 
         bindService(serviceIntent, connection, 0)
+    }
+
+    fun disconnectService() {
+        this.boosterTracker?.remove(this)
+        unbindService(connection)
     }
 
 
